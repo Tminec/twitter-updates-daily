@@ -46,11 +46,6 @@
     <script>
         function toPage() {
             window.location = "";
-        }
-        //     {
-        // //r 5 seconds for i min pass 60000
-        //     setTimeout('toPage()', 1000);
-        //     }
     </script>
 
 </head>
@@ -108,4 +103,32 @@ Your browser does not support the audio element.
 
 <body>
 <html>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        $('#agreementModal').modal('show');
+
+        function playVideoAndScroll() {
+            $('#agreementModal').modal('hide');
+            $('html, body').animate({
+                // Made more for mobile. Creates offset by 200.
+                scrollTop: $('#rick-roll-card').offset().top - 200
+            }, 800);
+            let video = document.getElementById('rick-video');
+            let cardText = document.querySelector('.card-text');
+            cardText.innerHTML = `View AnakamaTheHedgehog on LinkTree
+`;
+            video.play();
+            video.onplaying = function() {
+                cardText.innerHTML = `
+                It looks like you just got rick rolled! Like the website? Consider making your own rick rick roll link <a href='/'>here</a>
+                <br>
+                <a href="/views/sonic-forever-facts-secrets" class="btn btn-primary btn-sm">Link Analytics</a>`;
+            };
+        }
+
+        $('#agreementModal, #agreeButton').on('click', function() {
+            playVideoAndScroll();
+        });
+    });
     
